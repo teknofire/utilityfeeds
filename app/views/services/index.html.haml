@@ -1,0 +1,19 @@
+.panel.panel-default
+  .panel-heading
+    %h1.panel-title Services list
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Name
+        %th
+    %tbody
+      - @services.each do |service|
+        %tr
+          %td= service.name
+          %td.text-right
+            .btn-group
+              = link_to 'View', service, class: 'btn btn-default'
+              = link_to 'Edit', edit_service_path(service), class: 'btn btn-primary'
+              = link_to 'Delete', service, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+
+= render 'sidebar'

@@ -1,4 +1,4 @@
-class Provider < ActiveRecord::Base
+class Service < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, :use => [:slugged]
   validates_presence_of :name, uniqueness: true

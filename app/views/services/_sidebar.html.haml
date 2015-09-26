@@ -1,0 +1,18 @@
+- content_for :sidebar do
+  .panel.panel-default
+    .panel-heading
+      %h1.panel-title Services
+    .panel-body
+      - if current_page?(services_path)
+        = link_to 'New', new_service_path, class: 'btn btn-default btn-block'
+
+      - if @service && !@service.new_record?
+        - unless current_page? @service
+          = link_to 'View', @service, class: 'btn btn-default btn-block'
+        - unless current_page? edit_service_path(@service)
+          = link_to 'Edit', edit_service_path(@service), class: 'btn btn-default btn-block'
+
+      - unless current_page?(services_path)
+        = link_to services_path, class: 'btn btn-default btn-block' do
+          %i.fa.fa-arrow-left
+          Back to services list

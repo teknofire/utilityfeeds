@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  service_id: 
+  provider_id: 
+  location: MyString
+  address: MyText
+  notes: MyText
+  started_at: 2015-09-26 12:53:34
+  ended_at: 2015-09-26 12:53:34
+
+two:
+  service_id: 
+  provider_id: 
+  location: MyString
+  address: MyText
+  notes: MyText
+  started_at: 2015-09-26 12:53:34
+  ended_at: 2015-09-26 12:53:34

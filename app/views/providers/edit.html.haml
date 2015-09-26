@@ -1,5 +1,7 @@
-%h1 Editing Provider
-= render 'form'
-= link_to 'Show', @provider
-|
-= link_to 'Back', providers_path
+.panel.panel-default
+  .panel-heading
+    %h1.panel-title Editing provider
+  .panel-body
+    = render 'form'
+
+= render 'sidebar'
