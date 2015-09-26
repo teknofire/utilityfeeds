@@ -1,0 +1,29 @@
+.panel.panel-default
+  .panel-heading
+    %h1.panel-title Providers List
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th Address
+        %th Phone
+        %th Email
+        %th
+    %tbody
+      - @providers.each do |provider|
+        %tr
+          %td= provider.name
+          %td= provider.address
+          %td= provider.phone
+          %td= provider.email
+          %td
+            = link_to 'Show', provider
+            = link_to 'Edit', edit_provider_path(provider)
+            = link_to 'Destroy', provider, method: :delete, data: { confirm: 'Are you sure?' }
+
+- content_for :sidebar do
+  .panel.panel-default
+    .panel-heading
+      %h1.panel-title title
+    .panel-body
+      = link_to 'New Provider', new_provider_path, class: 'btn btn-default btn-block'
