@@ -7,6 +7,18 @@ L.mapbox.accessToken = 'pk.eyJ1IjoidGVrbm9maXJlIiwiYSI6ImNpZjBpbWloYzBoZDdzbGtxc
 $(document).on 'ready page:load', ->
   map = L.mapbox.map('map', 'teknofire.nhofm92j')
   map.setView([64.833173, -147.800445], 10)
-  L.control.locate().addTo(map)
-  
+  lc = L.control.locate({
+    drawCircle: false,
+    follow: true,
+    setView: true
+  })
+  lc.addTo(map)
+  map.on 'locationfound', (e) ->
+    console.log e.latlng
+
+  # lc.start()
+
   featureGroup = L.featureGroup().addTo(map)
+
+  $('[data-behavior="report-outage"]').on 'click', ->
+    lc.start()
