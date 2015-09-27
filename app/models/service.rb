@@ -6,4 +6,8 @@ class Service < ActiveRecord::Base
   def should_generate_new_friendly_id?
     !slug? || name_changed?
   end
+
+  def to_s
+    name
+  end
 end

@@ -5,6 +5,12 @@ class OutageReportsController < ApplicationController
   # GET /outage_reports.json
   def index
     @outage_reports = OutageReport.all
+
+    respond_to do |format|
+      format.html
+      format.json
+      format.geojson
+    end
   end
 
   # GET /outage_reports/1

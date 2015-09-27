@@ -18,11 +18,21 @@ class OutageReporter
     })
     @locator.addTo(@map)
 
+    @addLayers()
+
     @map.on 'startfollowing', @onFindingLocation
 
     $('[data-behavior="report-outage"]').on 'click', =>
       @locator.start()
 
+  addLayers: () =>
+    for layer in $('#map layer')
+      switch($(layer).data('type'))
+        when 'geojson'
+          @addFeatureLayer($(layer))
+
+  addFeatureLayer: (layer) =>
+    L.mapbox.featureLayer(layer.data('url')).addTo(@map)
 
   onFindingLocation: (e) =>
     $('#finding-location-modal').modal();
@@ -41,7 +51,18 @@ class OutageReporter
     @geocoder.reverseQuery([latlng.lng, latlng.lat], @setAddress)
 
   setAddress: (err, data) =>
-    console.log data
+    info = {}
+    for item in data.features
+      name = item.id.split('.')[0]
+      info[name] = item.place_name
 
+    if info.address?
+      location = info.address.split(/,\s+/)
+    else if info.place?
+      location = [''].concat info.place.split(/,\s+/)
+    else if info.postcode?
+      location = ['', ''].concat info.postcode.split(/,\s+/)
+
+    $('#outage_report_address').val("#{location[0]}\n#{location[1]}, #{location[3]} #{location[2]}")
 $(document).on 'ready page:load', ->
   reporter = new OutageReporter()

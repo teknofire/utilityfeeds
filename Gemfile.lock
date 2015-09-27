@@ -54,6 +54,7 @@ GEM
     execjs (2.6.0)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
+    georuby (2.5.2)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -154,6 +155,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   friendly_id (~> 5.1.0)
+  georuby
   haml
   jbuilder (~> 2.0)
   jquery-rails
