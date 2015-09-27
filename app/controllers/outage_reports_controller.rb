@@ -13,6 +13,19 @@ class OutageReportsController < ApplicationController
     end
   end
 
+  def service
+    respond_to do |format|
+      format.html {
+        @outage_report = OutageReport.new
+        @layers = [{ type: 'geojson', url: service_outage_reports_path(params[:slug], :geojson) }]
+        render layout: 'map'
+      }
+      format.geojson {
+        @outage_reports = OutageReport.joins(:service).references(:service).where(services: { name: params[:slug] })
+      }
+    end
+  end
+
   # GET /outage_reports/1
   # GET /outage_reports/1.json
   def show

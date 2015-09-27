@@ -18,6 +18,14 @@
             %li= link_to 'Providers', providers_path
             %li= link_to 'Services', services_path
         %li.dropdown
+          = link_to '#filter-services', data: { toggle: 'dropdown' } do
+            %i.fa.fa-fw.fa-search
+            Filter by service
+          %ul.dropdown-menu
+            - Service.find_each do |service|
+              %li= link_to service.name, service_outage_reports_path(service.name)
+
+        %li.dropdown
           = link_to '#report', data: { toggle: 'dropdown' } do
             Report Outage
             %span.caret

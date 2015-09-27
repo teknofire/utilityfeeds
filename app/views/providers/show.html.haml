@@ -2,14 +2,14 @@
   .panel-heading
     %h1.panel-title= @provider.name
   .panel-body
-    %p
-      %strong Address:
-      = @provider.address
-    %p
-      %strong Phone:
-      = @provider.phone
-    %p
-      %strong Email:
-      = @provider.email
+    %dl.dl-horizontal
+      %dt Address:
+      %dd{ style: 'white-space: pre-line;' }= @provider.address
+      %dt Phone:
+      %dd= @provider.phone
+      %dt Email:
+      %dd= @provider.email
+      %dt Services:
+      %dd= @provider.services.pluck(:name).join(', ')
 
 = render 'sidebar'

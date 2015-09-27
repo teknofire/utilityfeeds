@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :outage_reports
+  resources :outage_reports do
+    get 'service/:slug', action: :service, on: :collection, as: :service
+  end
   resources :services
   resources :providers
   # The priority is based upon order of creation: first created -> highest priority.

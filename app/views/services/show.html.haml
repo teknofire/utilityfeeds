@@ -2,8 +2,8 @@
   .panel-heading
     %h1.panel-title Service
   .panel-body
-    %p
-      %strong Name:
-      = @service.name
+    %dl.dl-horizontal
+      %dt Name:
+      %dd= @service.name
 
 = render 'sidebar'

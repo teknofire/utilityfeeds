@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150927024745) do
+ActiveRecord::Schema.define(version: 20150927222501) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 20150927024745) do
 
   add_index "outage_reports", ["provider_id"], name: "index_outage_reports_on_provider_id"
   add_index "outage_reports", ["service_id"], name: "index_outage_reports_on_service_id"
+
+  create_table "provider_services", force: :cascade do |t|
+    t.integer  "service_id"
+    t.integer  "provider_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "provider_services", ["provider_id"], name: "index_provider_services_on_provider_id"
+  add_index "provider_services", ["service_id"], name: "index_provider_services_on_service_id"
 
   create_table "providers", force: :cascade do |t|
     t.string   "name"
