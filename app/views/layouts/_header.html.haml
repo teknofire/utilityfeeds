@@ -25,6 +25,7 @@
             Filter by service
             %span.caret
           %ul.dropdown-menu
+            %li= link_to 'All services', root_url
             - Service.find_each do |service|
               %li= link_to service.name, service_outage_reports_path(service.name)
 
