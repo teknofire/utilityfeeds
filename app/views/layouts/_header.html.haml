@@ -6,7 +6,9 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to 'Utility feeds', root_url, class: 'navbar-brand'
+      = link_to root_url, class: 'navbar-brand' do
+        Utility Feeds
+        = content_for :title
 
     #navbar.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
@@ -21,6 +23,7 @@
           = link_to '#filter-services', data: { toggle: 'dropdown' } do
             %i.fa.fa-fw.fa-search
             Filter by service
+            %span.caret
           %ul.dropdown-menu
             - Service.find_each do |service|
               %li= link_to service.name, service_outage_reports_path(service.name)
