@@ -5,11 +5,14 @@
     %thead
       %tr
         %th Name
+        %th Color
         %th
     %tbody
       - @services.each do |service|
         %tr
           %td= service.name
+          %td 
+            %div{style: "display: inline-block; background-color: #{service.color}; height: 15px; width: 15px;"} &nbsp;
           %td.text-right
             .btn-group
               = link_to 'View', service, class: 'btn btn-default'

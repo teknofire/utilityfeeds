@@ -9,6 +9,14 @@
 Provider.where(name: 'Power R Us', address: '1234 Power Drive', phone: '555-555-5555', email: 'outage@power.us').first_or_create
 Provider.where(name: 'WaterHandlers Inc.', address: '1234 Water Drive', phone: '222-555-5555', email: 'outage@water.us').first_or_create
 
-Service.where(name: 'Power', color: '#f0ad4e').first_or_create
-Service.where(name: 'Water', color: '#518dc1').first_or_create
-Service.where(name: 'Sewer', color: '#c97d04').first_or_create
+Service.where(name: 'Power', color: '#ef3122').first_or_create
+Service.where(name: 'Gas', color: '#fff101').first_or_create
+Service.where(name: 'Water', color: '#006eb6').first_or_create
+Service.where(name: 'Sewer', color: '#009365').first_or_create
+
+Service.where(name: 'Phone', color: '#f7981d').first_or_create
+Service.where(name: 'Internet', color: '#f7981d').first_or_create
+Service.where(name: 'Cable', color: '#f7981d').first_or_create
+
+Service.where(name: 'Celluar', color: '#f7981d').first_or_create
+
