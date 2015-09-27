@@ -9,9 +9,14 @@ html,body {
   margin:0;
 }
 
-#map {
+#map.full-screen {
   position: absolute;
   top:50px;
   bottom:0;
+  width: 100%;
+}
+
+#map.half-screen {
+  height: 300px;
   width: 100%;
 }

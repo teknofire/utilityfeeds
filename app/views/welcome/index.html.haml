@@ -1,5 +1,13 @@
-#map
+#map.full-screen
   %layer{ data: { type: 'geojson', url: outage_reports_path(:geojson) } }
+    %popup.hidden
+      %h1 Outage :: {{service.name}}
+      %p
+        %strong Provider:
+        {{provider.name}}
+      %p
+        %strong Reported:
+        {{reported}}
 
 #finding-location-modal.modal.fade
   .modal-dialog

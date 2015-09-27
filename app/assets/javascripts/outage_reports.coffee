@@ -42,7 +42,19 @@ class OutageReporter
           @addFeatureLayer($(layer))
 
   addFeatureLayer: (layer) =>
-    L.mapbox.featureLayer(layer.data('url')).addTo(@map)
+    feature_layer = L.mapbox.featureLayer(layer.data('url')).addTo(@map)
+    template = $(layer).find('popup').html()
+    Mustache.parse(template)
+
+    feature_layer.on 'popupopen', (e) ->
+      l = e.layer
+      popup = e.popup
+
+      request = $.getJSON(l.feature.properties.url).done (data) ->
+        popup.setContent(Mustache.render(template, data))
+
+
+    feature_layer.bindPopup('<i class="fa fa-spin fa-refresh"></i> Loading...')
 
   onFindingLocation: (e) =>
     $('#finding-location-modal').modal();

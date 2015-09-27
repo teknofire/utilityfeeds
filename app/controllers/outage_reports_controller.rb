@@ -16,6 +16,11 @@ class OutageReportsController < ApplicationController
   # GET /outage_reports/1
   # GET /outage_reports/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.geojson
+      format.json
+    end
   end
 
   # GET /outage_reports/new

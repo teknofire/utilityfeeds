@@ -1,0 +1,13 @@
+- content_for :sidebar do
+  .panel.panel-default
+    .panel-heading
+      %h1.panel-title Outage report
+    .panel-body
+      - if @outage_report && !@outage_report.new_record?
+        - unless current_page? @outage_report
+          = link_to 'View', @outage_report, class: 'btn btn-default btn-block'
+
+      - unless current_page?(outage_reports_path)
+        = link_to outage_reports_path, class: 'btn btn-default btn-block' do
+          %i.fa.fa-arrow-left
+          Back to outage reports

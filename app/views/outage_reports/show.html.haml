@@ -1,25 +1,25 @@
-%p#notice= notice
-%p
-  %strong Service:
-  = @outage_report.service
-%p
-  %strong Provider:
-  = @outage_report.provider
-%p
-  %strong Location:
-  = @outage_report.location
-%p
-  %strong Address:
-  = @outage_report.address
-%p
-  %strong Notes:
-  = @outage_report.notes
-%p
-  %strong Started at:
-  = @outage_report.started_at
-%p
-  %strong Ended at:
-  = @outage_report.ended_at
-= link_to 'Edit', edit_outage_report_path(@outage_report)
-|
-= link_to 'Back', outage_reports_path
+.panel.panel-default
+  .panel-heading
+    %h1.panel-title Outage report
+  #map.half-screen
+    %layer{ data: { type: 'geojson', url: outage_report_path(@outage_report, :geojson) } }
+  .panel-body
+    %dl.dl-horizontal
+      %dt Service:
+      %dd= @outage_report.service
+      %dt Provider:
+      %dd= @outage_report.provider
+      %dt Location:
+      %dd= @outage_report.location
+      %dt Address:
+      %dd{ style: 'white-space: pre-line;'}= @outage_report.address
+      - if @outage_report.notes.present?
+        %dt Notes:
+        %dd= @outage_report.notes
+      %dt Started at:
+      %dd= @outage_report.started_at
+      - if @outage_report.ended_at?
+        %dt Ended at:
+        %dd= @outage_report.ended_at
+
+= render 'sidebar'
