@@ -17,4 +17,10 @@
           %ul.dropdown-menu
             %li= link_to 'Providers', providers_path
             %li= link_to 'Services', services_path
-        %li= link_to 'Report Outage', '#report', data: { behavior: 'report-outage' }
+        %li.dropdown
+          = link_to '#report', data: { toggle: 'dropdown' } do
+            Report Outage
+            %span.caret
+          %ul.dropdown-menu
+            %li= link_to 'Use current location', '#report', data: { behavior: 'report-outage', location: 'current' }
+            %li= link_to 'Pick location', '#report', data: { behavior: 'report-outage', location: 'marker' }

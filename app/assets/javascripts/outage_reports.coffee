@@ -21,9 +21,18 @@ class OutageReporter
     @addLayers()
 
     @map.on 'startfollowing', @onFindingLocation
+    @map.on 'draw:created', @onMarkerPlaced
+
+    @marker = new L.Draw.Marker(@map)
 
     $('[data-behavior="report-outage"]').on 'click', =>
-      @locator.start()
+      if $(this).data('location') == 'current'
+        @locator.start()
+      else
+        @marker.enable()
+
+  onMarkerPlaced: (e) =>
+    @getFormInfo(e.layer.getLatLng())
 
   addLayers: () =>
     for layer in $('#map layer')
@@ -43,9 +52,10 @@ class OutageReporter
     @locator.stop()
     @map.off 'locationfound', @onLocationFound
 
+  getFormInfo: (latlng) =>
     modal = $('#report-outage-modal').modal()
-    $('#outage_report_location').val("#{e.latlng.lat}, #{e.latlng.lng}")
-    @findAddress(e.latlng)
+    $('#outage_report_location').val("#{latlng.lat}, #{latlng.lng}")
+    @findAddress(latlng)
 
   findAddress: (latlng) =>
     @geocoder.reverseQuery([latlng.lng, latlng.lat], @setAddress)
