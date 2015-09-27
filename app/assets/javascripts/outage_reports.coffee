@@ -25,8 +25,9 @@ class OutageReporter
 
     @marker = new L.Draw.Marker(@map)
 
-    $('[data-behavior="report-outage"]').on 'click', =>
-      if $(this).data('location') == 'current'
+    $('[data-behavior="report-outage"]').on 'click', (e) =>
+      if $(e.target).data('location') == 'current'
+        @map.on 'locationfound', @onLocationFound
         @locator.start()
       else
         @marker.enable()
@@ -45,12 +46,12 @@ class OutageReporter
 
   onFindingLocation: (e) =>
     $('#finding-location-modal').modal();
-    @map.on 'locationfound', @onLocationFound
 
   onLocationFound: (e) =>
     $('#finding-location-modal').modal('hide')
     @locator.stop()
     @map.off 'locationfound', @onLocationFound
+    @getFormInfo(e.latlng);
 
   getFormInfo: (latlng) =>
     modal = $('#report-outage-modal').modal()
