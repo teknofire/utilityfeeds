@@ -53,7 +53,6 @@ class OutageReporter
       request = $.getJSON(l.feature.properties.url).done (data) ->
         popup.setContent(Mustache.render(template, data))
 
-
     feature_layer.bindPopup('<i class="fa fa-spin fa-refresh"></i> Loading...')
 
   onFindingLocation: (e) =>
