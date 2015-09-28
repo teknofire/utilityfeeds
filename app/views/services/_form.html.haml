@@ -2,6 +2,6 @@
   = f.error_notification
   .form-inputs
     = f.input :name
-    = f.input :color, hint: '#RRGGBB'
+    = f.input :color, hint: '#RRGGBB', input_html: {data:{ behavior: "colorpicker"} }
   .form-actions.text-right
     = f.button :submit, class: 'btn btn-primary'

@@ -12,6 +12,7 @@
  *
  *= require bootstrap
  *= require font-awesome
+ *= require mjolnic-bootstrap-colorpicker
  *= require_tree .
  *= require_self
  */
