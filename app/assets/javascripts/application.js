@@ -15,5 +15,6 @@
 //= require turbolinks
 //= require bootstrap
 //= require mjolnic-bootstrap-colorpicker
+//= require select2
 //= require mustache
 //= require_tree .

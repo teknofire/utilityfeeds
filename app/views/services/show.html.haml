@@ -4,6 +4,10 @@
   .panel-body
     %dl.dl-horizontal
       %dt Name:
-      %dd= @service.name
+      %dd
+        = @service.name
+      %dt Color:
+      %dd
+        %span{ style: "display: inline-block; background-color: #{@service.color}; height: 20px; width: 20px;"} &nbsp;
 
 = render 'sidebar'

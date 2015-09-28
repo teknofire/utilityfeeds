@@ -54,4 +54,5 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-font-awesome'
   gem 'rails-assets-mustache'
   gem 'rails-assets-mjolnic-bootstrap-colorpicker'
+  gem 'rails-assets-select2'
 end

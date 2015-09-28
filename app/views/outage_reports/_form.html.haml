@@ -1,7 +1,7 @@
 = simple_form_for(@outage_report) do |f|
   = f.error_notification
   .form-inputs
-    = f.association :service
+    = f.association :service, input_html: { data: { behavior: 'select2' } }
     = f.association :provider
     = f.input :location
     = f.input :address

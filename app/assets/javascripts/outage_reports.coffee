@@ -88,3 +88,5 @@ class OutageReporter
     $('#outage_report_address').val("#{location[0]}\n#{location[1]}, #{location[3]} #{location[2]}")
 $(document).on 'ready page:load', ->
   reporter = new OutageReporter()
+
+  $('[data-behavior="select2"]').select2()
