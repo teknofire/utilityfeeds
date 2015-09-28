@@ -4,6 +4,7 @@
   .panel-body
     %p
       %strong Name:
-      = @service.name
+      = @service.name 
+      %span{ style: "display: inline-block; background-color: #{@service.color}; height: 15px; width: 15px;"} &nbsp;
 
 = render 'sidebar'
