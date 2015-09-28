@@ -89,4 +89,4 @@ class OutageReporter
 $(document).on 'ready page:load', ->
   reporter = new OutageReporter()
 
-  $('[data-behavior="select2"]').select2()
+  # $('[data-behavior="select2"]').select2()
