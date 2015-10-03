@@ -27,7 +27,11 @@
           %ul.dropdown-menu
             %li= link_to 'All services', root_url
             - Service.find_each do |service|
-              %li= link_to service.name, service_outage_reports_path(service.name)
+              %li
+                = link_to service_outage_reports_path(service.name) do
+                  .pull-right.badge= service.outage_reports.size
+                  %span{ style: "display: inline-block; background-color: #{service.color}; height: 20px; width: 20px;"} &nbsp;
+                  = service.name
 
         %li.dropdown
           = link_to '#report', data: { toggle: 'dropdown' } do
