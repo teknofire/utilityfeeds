@@ -12,9 +12,10 @@ class OutageReporter
     @map = L.mapbox.map('map', 'teknofire.nhofm92j')
     @map.setView([64.833173, -147.800445], 10)
     @locator = L.control.locate({
-      drawCircle: false,
+      drawCircle: true,
       follow: true,
-      setView: true
+      setView: true,
+      locateOptions: { maxZoom: 16 }
     })
     @locator.addTo(@map)
 
@@ -62,10 +63,18 @@ class OutageReporter
     $('#finding-location-modal').modal('hide')
     @locator.stop()
     @map.off 'locationfound', @onLocationFound
+
+    if !@currentMarker?
+      @currentMarker = L.marker(e.latlng, { draggable: true })
+      @currentMarker.addTo @map
+      @currentMarker.on 'dragend', (latlng) =>
+        @onLocationFound({ latlng: @currentMarker.getLatLng() })
+
+    # @marker.addTo(@map)
     @getFormInfo(e.latlng);
 
   getFormInfo: (latlng) =>
-    modal = $('#report-outage-modal').modal()
+    modal = $('#report-form').collapse('show')
     $('#outage_report_location').val("#{latlng.lat}, #{latlng.lng}")
     @findAddress(latlng)
 

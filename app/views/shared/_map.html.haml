@@ -10,6 +10,21 @@
           %strong Reported:
           {{reported}}
 
+#report-buttons.panel.panel-default
+  .panel-heading
+    %h1.panel-title Report an outage
+  #report-form.collapse.panel-body
+    = render 'outage_reports/form'
+  .panel-footer
+    .btn-group.btn-lg
+      = link_to '#report', class: 'btn btn-success', data: { behavior: 'report-outage', location: 'current' } do
+        %i.fa.fa-fw.fa-dot-circle-o
+        Use my location
+      = link_to '#report', class: 'btn btn-primary', data: { behavior: 'report-outage', location: 'marker' } do
+        %i.fa.fa-fw.fa-map-marker
+        Pick a location
+
+
 #finding-location-modal.modal.fade
   .modal-dialog
     .modal-content
@@ -17,12 +32,4 @@
         %h4.modal-title Finding location
       .modal-body
         %i.fa.fa-fw.fa-spin.fa-refresh
-        Please wait while we determine you're location
-
-#report-outage-modal.modal.fade
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %h4.modal-title Report outage
-      .modal-body
-        = render 'outage_reports/form'
+        Please wait while we determine your location

@@ -7,5 +7,7 @@
     = f.input :address
     = f.input :notes
     = f.input :started_at
-  .form-actions
-    = f.button :submit
+  .form-actions.text-right
+    %button.btn.btn-default{ type: 'button', data: { toggle: 'collapse', dismiss: 'modal', target: '#report-form' } }
+      Cancel
+    = f.button :submit, class: 'btn btn-primary'

@@ -1,6 +1,9 @@
 .panel.panel-default
   .panel-heading
     %h1.panel-title Service
+  #map.half-screen
+    %layer{ data: { type: 'geojson', url: service_outage_reports_path(slug: @service.name, format: :geojson) } }
+      = render 'shared/popup'
   .panel-body
     %dl.dl-horizontal
       %dt Name:

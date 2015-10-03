@@ -20,3 +20,14 @@ html,body {
   height: 300px;
   width: 100%;
 }
+
+#report-buttons {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 600px;
+
+  .panel-footer { padding: 0px; }
+  .panel-footer .btn-group { width: 100%; }
+  .panel-footer .btn { width: 50%; }
+}

@@ -3,15 +3,7 @@
     %h1.panel-title Outage report
   #map.half-screen
     %layer{ data: { type: 'geojson', url: outage_report_path(@outage_report, :geojson) } }
-      %popup.hidden
-        %h1 Outage :: {{service.name}}
-        %p
-          %strong Provider:
-          {{provider.name}}
-        %p
-          %strong Reported:
-          {{reported}}
-
+      = render 'shared/popup'
   .panel-body
     %dl.dl-horizontal
       %dt Service:

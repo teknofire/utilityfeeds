@@ -5,6 +5,7 @@
     %thead
       %tr
         %th Name
+        %th # Outages
         %th
     %tbody
       - @services.each do |service|
@@ -12,6 +13,8 @@
           %td
             %div{style: "display: inline-block; background-color: #{service.color}; height: 20px; width: 20px;"} &nbsp;
             = service.name
+          %td
+            .badge= service.outage_reports.size
           %td.text-right
             .btn-group
               = link_to 'View', service, class: 'btn btn-default'
