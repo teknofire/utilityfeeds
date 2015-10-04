@@ -34,7 +34,7 @@ class OutageReporter
         @marker.enable()
 
   onMarkerPlaced: (e) =>
-    @getFormInfo(e.layer.getLatLng())
+    @setFormInfo(e.layer.getLatLng())
 
   addLayers: () =>
     for layer in $('#map layer')
@@ -64,17 +64,20 @@ class OutageReporter
     @locator.stop()
     @map.off 'locationfound', @onLocationFound
 
+    # @marker.addTo(@map)
+    @setFormInfo(e.latlng);
+
+  setFormInfo: (latlng) =>
+    modal = $('#report-form').collapse('show')
+    
     if !@currentMarker?
-      @currentMarker = L.marker(e.latlng, { draggable: true })
+      @currentMarker = L.marker(latlng, { draggable: true })
       @currentMarker.addTo @map
       @currentMarker.on 'dragend', (latlng) =>
-        @onLocationFound({ latlng: @currentMarker.getLatLng() })
+        @setFormInfo(@currentMarker.getLatLng())
+    else
+      @currentMarker.setLatLng(latlng)
 
-    # @marker.addTo(@map)
-    @getFormInfo(e.latlng);
-
-  getFormInfo: (latlng) =>
-    modal = $('#report-form').collapse('show')
     $('#outage_report_location').val("#{latlng.lat}, #{latlng.lng}")
     @findAddress(latlng)
 
