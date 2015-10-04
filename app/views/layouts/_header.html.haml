@@ -32,11 +32,3 @@
                   .pull-right.badge= service.outage_reports.size
                   %span{ style: "display: inline-block; background-color: #{service.color}; height: 20px; width: 20px;"} &nbsp;
                   = service.name
-
-        %li.dropdown
-          = link_to '#report', data: { toggle: 'dropdown' } do
-            Report Outage
-            %span.caret
-          %ul.dropdown-menu
-            %li= link_to 'Use current location', '#report', data: { behavior: 'report-outage', location: 'current' }
-            %li= link_to 'Pick location', '#report', data: { behavior: 'report-outage', location: 'marker' }

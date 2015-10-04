@@ -57,7 +57,7 @@ class OutageReporter
 
     feature_layer.bindPopup('<i class="fa fa-spin fa-refresh"></i> Loading...')
 
-    
+    # feature_layer.on ''
 
     feature_layer
 
@@ -82,6 +82,9 @@ class OutageReporter
         @setFormInfo(@currentMarker.getLatLng())
     else
       @currentMarker.setLatLng(latlng)
+
+    @map.panTo(@currentMarker.getLatLng())
+    @map.setZoomAround(@currentMarker.getLatLng(), 15)
 
     $('#outage_report_location').val("#{latlng.lat}, #{latlng.lng}")
     @findAddress(latlng)
