@@ -26,6 +26,7 @@ gem 'haml'
 gem 'simple_form'
 gem 'friendly_id', '~> 5.1.0'
 gem 'georuby'
+gem 'puma'
 
 gem 'rails_12factor', group: :production
 
@@ -59,3 +60,5 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-select2'
   gem 'rails-assets-font-awesome'
 end
+
+ruby "2.2.0"
