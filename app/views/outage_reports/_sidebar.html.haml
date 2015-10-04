@@ -7,7 +7,6 @@
         - unless current_page? @outage_report
           = link_to 'View', @outage_report, class: 'btn btn-default btn-block'
 
-      - unless current_page?(outage_reports_path)
-        = link_to outage_reports_path, class: 'btn btn-default btn-block' do
-          %i.fa.fa-arrow-left
-          Back to outage reports
+      = link_to root_path, class: 'btn btn-default btn-block' do
+        %i.fa.fa-arrow-left
+        Back to outage reports
