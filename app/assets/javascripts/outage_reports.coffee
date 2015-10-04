@@ -42,6 +42,7 @@ class OutageReporter
         when 'geojson'
           @addFeatureLayer($(layer))
 
+
   addFeatureLayer: (layer) =>
     feature_layer = L.mapbox.featureLayer(layer.data('url')).addTo(@map)
     template = $(layer).find('popup').html()
@@ -56,6 +57,10 @@ class OutageReporter
 
     feature_layer.bindPopup('<i class="fa fa-spin fa-refresh"></i> Loading...')
 
+    
+
+    feature_layer
+
   onFindingLocation: (e) =>
     $('#finding-location-modal').modal();
 
@@ -69,7 +74,7 @@ class OutageReporter
 
   setFormInfo: (latlng) =>
     modal = $('#report-form').collapse('show')
-    
+
     if !@currentMarker?
       @currentMarker = L.marker(latlng, { draggable: true })
       @currentMarker.addTo @map
