@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150927222501) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -21,10 +24,10 @@ ActiveRecord::Schema.define(version: 20150927222501) do
     t.datetime "created_at"
   end
 
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "outage_reports", force: :cascade do |t|
     t.integer  "service_id"
@@ -38,8 +41,8 @@ ActiveRecord::Schema.define(version: 20150927222501) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "outage_reports", ["provider_id"], name: "index_outage_reports_on_provider_id"
-  add_index "outage_reports", ["service_id"], name: "index_outage_reports_on_service_id"
+  add_index "outage_reports", ["provider_id"], name: "index_outage_reports_on_provider_id", using: :btree
+  add_index "outage_reports", ["service_id"], name: "index_outage_reports_on_service_id", using: :btree
 
   create_table "provider_services", force: :cascade do |t|
     t.integer  "service_id"
@@ -48,8 +51,8 @@ ActiveRecord::Schema.define(version: 20150927222501) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "provider_services", ["provider_id"], name: "index_provider_services_on_provider_id"
-  add_index "provider_services", ["service_id"], name: "index_provider_services_on_service_id"
+  add_index "provider_services", ["provider_id"], name: "index_provider_services_on_provider_id", using: :btree
+  add_index "provider_services", ["service_id"], name: "index_provider_services_on_service_id", using: :btree
 
   create_table "providers", force: :cascade do |t|
     t.string   "name"
@@ -69,4 +72,8 @@ ActiveRecord::Schema.define(version: 20150927222501) do
     t.string   "color"
   end
 
+  add_foreign_key "outage_reports", "providers"
+  add_foreign_key "outage_reports", "services"
+  add_foreign_key "provider_services", "providers"
+  add_foreign_key "provider_services", "services"
 end
